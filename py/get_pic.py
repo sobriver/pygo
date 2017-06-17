@@ -9,7 +9,12 @@ import logging.config
 
 # 爬取斗图啦网站https://www.doutula.com所有图片,下载至本地
 
-def get_pic():
+def get_pic(path):
+    """
+
+    :param path: 本地保存图片路径
+    :return:
+    """
 
     # 总页数
     total = 844
@@ -33,12 +38,12 @@ def get_pic():
                 if pic.eq(0).has_class('gif'):
                     pic_src = pic.eq(1).attr('data-original')
                     pic_name = pic.eq(1).attr('alt')
-                    save(pic_name, pic_src)
+                    save(pic_name, pic_src, path)
                 # 静态图片
                 else:
                     pic_src = pic.attr('data-original')
                     pic_name = pic.attr('alt')
-                    save(pic_name, pic_src)
+                    save(pic_name, pic_src, path)
             except Exception as e:
                 logger.error(e)
                 pass
@@ -77,5 +82,5 @@ if __name__ == '__main__':
         logger = logging.getLogger()
 
     # 保存图片的本地路径
-    path = '/Users/hw/PycharmProjects/pygo/pic'
-    get_pic()
+    path = 'E:\PycharmProjects\pygo\pic'
+    get_pic(path)

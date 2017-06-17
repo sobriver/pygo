@@ -38,6 +38,9 @@ def exception():
             pass
         finally:
             print('finally execute')
+def py():
+    for i in range(20):
+        print(i)
 
 
 
@@ -48,5 +51,7 @@ def exception():
 
 if __name__ == '__main__':
     # exception()
-    log()
+    # log()
     # print(os.sep)
+    py()
+    input('henhao')
