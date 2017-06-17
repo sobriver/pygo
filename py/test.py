@@ -13,7 +13,7 @@ def log():
     :return: 
     """
     # 解决Windows下出现gbk的编码问题
-    with open('./conf/test_logging.conf', encoding='utf-8') as file:
+    with open('test_logging.conf', encoding='utf-8') as file:
         logging.config.fileConfig(file)
         logger = logging.getLogger()
 

@@ -4,7 +4,8 @@ import requests
 from pyquery import PyQuery as pq
 import time
 import os
-from py.utils.logger_utils import Logger
+import logging.config
+
 
 # 爬取斗图啦网站https://www.doutula.com所有图片,下载至本地
 
@@ -71,9 +72,10 @@ def save(name, url, path):
 
 
 if __name__ == '__main__':
-    logging_conf = './conf/get_pic_logging.conf'
-    logger = Logger(logging_conf).getLogger()
+    with open('get_pic_logging.conf', encoding='utf-8') as file:
+        logging.config.fileConfig(file)
+        logger = logging.getLogger()
 
     # 保存图片的本地路径
-    path = 'E:\pic'
+    path = '/Users/hw/PycharmProjects/pygo/pic'
     get_pic()
