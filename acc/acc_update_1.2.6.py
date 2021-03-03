@@ -24,8 +24,8 @@ if __name__ == '__main__':
 
         for uid in uid_list:
             # 将所有系统类别插入
-            cursor.execute("insert into " + type_table + " (extend, type, name, description, icon, color, sort, uid) "
-                           "select id, type, name, description, icon, color, sort, %s from acc_type" % (uid))
+            cursor.execute("insert into " + type_table + " (extend, type, name, description, icon, color, order, uid) "
+                           "select id, type, name, description, icon, color, order, %s from acc_type" % (uid))
             conn.commit()
             print('类别插入完成')
 
