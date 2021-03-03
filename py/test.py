@@ -50,8 +50,5 @@ def py():
 
 
 if __name__ == '__main__':
-    # exception()
-    # log()
-    # print(os.sep)
-    py()
-    input('henhao')
+    for i in range(1, 5):
+        print(i)
