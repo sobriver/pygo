@@ -5,6 +5,11 @@ import logging
 
 
 if __name__ == '__main__':
+    """
+    1.2.6版本数据库脚本， 用于acc_type重构
+    """
+
+
     # user_acc_type_1 extend 的值表示原先acc_type的id
     detail_table = 'acc_detail_1'
     timer_table = 'add_detail_timer_1'
