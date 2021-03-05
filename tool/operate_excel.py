@@ -3,7 +3,6 @@
 import xlwt
 import xlrd
 import os
-# import logging.config
 
 
 
