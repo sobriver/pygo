@@ -3,12 +3,14 @@ import json
 import logging
 
 if __name__ == '__main__':
+    """
+    将user_acc_type的所有sort值进行重新命名
+    """
+
     # user_acc_type_1 extend 的值表示原先acc_type的id
-    detail_table = 'acc_detail_1'
-    timer_table = 'add_detail_timer_1'
     type_table = 'user_acc_type_1'
 
-    conn = mysql.connector.connect(host="42.193.123.126", port='3306', user="root", passwd="12358", database="acc_app")
+    conn = mysql.connector.connect(host="localhost", port='3306', user="root", passwd="12358", database="acc_app")
     cursor = conn.cursor()
 
     try:
@@ -21,7 +23,7 @@ if __name__ == '__main__':
             if size > 0:
                 for index, value in enumerate(ids):
                     sort = 11 + index
-                    cursor.execute("update user_acc_type set sort=%s where id=%s" % (sort, value[0]))
+                    cursor.execute("update " + type_table + " set sort=%s where id=%s" % (sort, value[0]))
                     conn.commit()
                     print(f'{uid} update type 1 success')
 
