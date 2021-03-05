@@ -11,9 +11,9 @@ if __name__ == '__main__':
 
 
     # user_acc_type_1 extend 的值表示原先acc_type的id
-    detail_table = 'acc_detail_1'
-    timer_table = 'add_detail_timer_1'
-    type_table = 'user_acc_type_1'
+    detail_table = 'acc_detail'
+    timer_table = 'add_detail_timer'
+    type_table = 'user_acc_type'
 
     conn = mysql.connector.connect(host="localhost", port='3306', user="root", passwd="12358", database="acc_app")
     cursor = conn.cursor()

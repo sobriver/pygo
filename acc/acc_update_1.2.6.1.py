@@ -8,7 +8,7 @@ if __name__ == '__main__':
     """
 
     # user_acc_type_1 extend 的值表示原先acc_type的id
-    type_table = 'user_acc_type_1'
+    type_table = 'user_acc_type'
 
     conn = mysql.connector.connect(host="localhost", port='3306', user="root", passwd="12358", database="acc_app")
     cursor = conn.cursor()
