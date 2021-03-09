@@ -1,0 +1,27 @@
+version: '3'
+services:
+  mysql:
+    restart: always
+    image: mysql:5.7.29
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: quantify
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 12358
+      MYSQL_ROOT_PASSWORD: 12358
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /workspace/quantify/mysql/data:/var/lib/mysql
+      - /workspace/quantify/mysql/log:/var/log/mysql
+      - /workspace/quantify/mysql/config/my.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+
+  service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+    volumes:
+      - /etc/localtime:/etc/localtime
+
