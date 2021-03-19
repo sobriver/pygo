@@ -21,7 +21,7 @@ def backup_db():
     try:
         backup_path = '/yunwei/backup/db'
 
-        logger.info('start backup db data')
+        logger.info('-----------------start backup db data-------------------')
         now = datetime.now()
         file_name = now.strftime('%Y%m%d') + '.sql'
         cmd_docker_id = 'docker ps|grep "app-service_mysql"|awk \'{print $1}\''
@@ -39,6 +39,7 @@ def backup_db():
         if not os.path.exists(file_name):
             logger.info('file not found')
             return
+        logger.info('back up db data to disk complete')
         # 压缩文件并放入备份目录
         zip_name = file_name + '.zip'
         if os.path.exists(zip_name):
@@ -48,9 +49,11 @@ def backup_db():
         with zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED) as z:
             z.write(file_name)
         shutil.move(zip_name, backup_path)
+        os.remove(file_name)
+        logger.info('zip and move file complete')
 
         # todo 检查30天之前的文件并删除, 暂时先这样吧
-        logger.info('backup db data success')
+        logger.info('----------------backup db data success-------------------')
     except Exception as e:
         logger.exception(e)
 
