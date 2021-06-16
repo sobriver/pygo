@@ -29,7 +29,7 @@ class QuickStartUser(HttpUser):
         """
         headers = {
             "Content-type": "application/json",
-            "token": "eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiIxMDEwMDAwMDA1IiwiaWF0IjoxNjIzODI0MDY4LCJleHAiOjE2MjY0MTYwNjh9.dxsTFS1UTVAW5SH1KJ0nM7KGfQWoL31Ioq6Cb81UpqhuYA_hk6GeXI779UR1P_ZamY2lq21FI2lsT_a-5t7jLQ"
+            "token": "eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiIxMDEwMDAwMDA1IiwiaWF0IjoxNjIzODI2MzkwLCJleHAiOjE2MjY0MTgzOTB9.OdaxCUL6NO_22DV-_RJM-xsLwoktH7Ngiws3JIkw0jIbr-pk6ZPMCz2NbJXOmKBoHCMgHHqzl11-cvoe6OB7KA"
         }
         t = datetime.now() + timedelta(random.randint(1, 200))
         data = {
@@ -40,7 +40,7 @@ class QuickStartUser(HttpUser):
             "timeStamp": int(t.timestamp() * 1000)
         }
         res = self.client.post("/acc/app/detail/add", json=data, headers=headers)
-        print("res=" + res.json()['code'])
+        print("res=" + str(res.json()['code']))
 
     # def on_start(self):
     #     self.client.post("/login", json={"username":"foo", "password":"bar"})
