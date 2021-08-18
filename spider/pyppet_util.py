@@ -125,7 +125,7 @@ class PyppeteerBrowser:
 
     # 获取当前操作的界面的URL   ??????????
     async def getPageUrl(self):
-        await self.page.url()
+        await self.page.search_url()
 
 
     # 打开连接；--OK--
@@ -137,7 +137,7 @@ class PyppeteerBrowser:
         self.res = await self.page.goto(url, options={'timeout': int(timeout * 1000)})  # 打开连接；
         await asyncio.sleep(2)  # 强行等待3秒
         status = self.res.status
-        curUrl = self.page.url
+        curUrl = self.page.search_url
         await self.preventCheckWebdriver(self.page)
         return status, curUrl
 
