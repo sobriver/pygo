@@ -10,11 +10,15 @@ try:
         ret, frame = video_capture.read()
 
         # Resize frame of video to 1/4 size for faster face detection processing
-        #small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
+        small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
 
         # Find all the faces and face encodings in the current frame of video
-        locations = face_recognition.face_locations(frame, model="cnn")
+        locations = face_recognition.face_locations(frame)
         print('face result:' + str(locations))
+        if locations is None:
+            break
+        if len(locations) == 0:
+            continue
 
         # Display the results
         for top, right, bottom, left in locations:
@@ -34,6 +38,4 @@ try:
             cv2.imwrite(new_img, face_image)
             i = i + 1
 finally:
-    # Release handle to the webcam
     video_capture.release()
-    cv2.destroyAllWindows()

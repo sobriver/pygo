@@ -5,11 +5,11 @@ import cv2
 """
 
 # 视频地址
-VIDEO_PATH = r'D:\tmp\video\1920x1080.264'
+VIDEO_PATH = r'D:\test\hus\jinyu3f01.ts'
 # 存放帧图片的位置
-EXTRACT_FOLDER = r'D:\tmp\video\photo'
+EXTRACT_FOLDER = r'D:\test\hus\cap'
 # 帧提取频率
-EXTRACT_FREQUENCY = 50
+EXTRACT_FREQUENCY = 1
 
 
 def extract_frames(video_path, dst_folder, index):
@@ -37,7 +37,6 @@ def extract_frames(video_path, dst_folder, index):
 if __name__ == '__main__':
     # 递归删除之前存放帧图片的文件夹，并新建一个
     import shutil
-
     try:
         shutil.rmtree(EXTRACT_FOLDER)
     except OSError:
