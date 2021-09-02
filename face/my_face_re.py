@@ -11,6 +11,7 @@ try:
 
         # Resize frame of video to 1/4 size for faster face detection processing
         small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
+        rgb_small_frame = small_frame[:, :, ::-1]
 
         # Find all the faces and face encodings in the current frame of video
         locations = face_recognition.face_locations(frame)
@@ -22,12 +23,6 @@ try:
 
         # Display the results
         for top, right, bottom, left in locations:
-            # Scale back up face locations since the frame we detected in was scaled to 1/4 size
-            top *= 4
-            right *= 4
-            bottom *= 4
-            left *= 4
-
             # Extract the region of the image that contains the face
             face_image = frame[top:bottom, left:right]
 
