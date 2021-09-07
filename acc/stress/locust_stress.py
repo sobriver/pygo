@@ -10,7 +10,7 @@ import random
 
 class QuickStartUser(HttpUser):
     wait_time = between(1, 1.5)
-    host = 'http://10.171.7.45:9000'
+    host = 'https://www.acchw.top:9010'
 
 
     # @task
@@ -25,17 +25,16 @@ class QuickStartUser(HttpUser):
     def add_detail(self):
         """
         添加明细
-        :return:
         """
         headers = {
             "Content-type": "application/json",
-            "token": "eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiIxMDEwMDAwMDA1IiwiaWF0IjoxNjIzODI2MzkwLCJleHAiOjE2MjY0MTgzOTB9.OdaxCUL6NO_22DV-_RJM-xsLwoktH7Ngiws3JIkw0jIbr-pk6ZPMCz2NbJXOmKBoHCMgHHqzl11-cvoe6OB7KA"
+            "token": "eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiIxNSIsImlhdCI6MTYzMTAwNDY2MCwiZXhwIjoxNjMzNTk2NjYwfQ.til6ivRLO1TiSjmW2ngYxgtOIwi8HeUXfTpQExEK0JgXKvIoAfDh2RSM60WlOT_o1kQGpSPGgNVZHHVzHuADIw"
         }
         t = datetime.now() + timedelta(random.randint(1, 200))
         data = {
-            "uid": 1010000005,
-            "tid": 1,
-            "bid": 1,
+            "uid": 15,
+            "tid": 50210,
+            "bid": 7,
             "amount": random.randint(1, 1000),
             "timeStamp": int(t.timestamp() * 1000)
         }
