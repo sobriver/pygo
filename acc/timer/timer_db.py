@@ -6,7 +6,7 @@ import os
 import zipfile
 import shutil
 
-logger.add('backup.log', level='INFO', format='{time:YYYY-MM-DD HH:mm:ss}-{file}-{line}-{message}', rotation="30 MB")
+logger.add('timer.log', level='INFO', format='{time:YYYY-MM-DD HH:mm:ss}-{file}-{line}-{message}', rotation="30 MB")
 
 """
 定时脚本
@@ -20,9 +20,9 @@ def backup_db():
     # 备份数据目录
     try:
         # 数据保存目录
-        backup_path = '/yunwei/backup/db'
+        backup_path = '/yunwei/timer/db'
 
-        logger.info('start backup db data')
+        logger.info('start timer db data')
         dt_formatter = '%Y%m%d'
         now = datetime.now()
         file_name = now.strftime(dt_formatter) + '.sql'
@@ -62,7 +62,7 @@ def backup_db():
             if f_dt < before_dt:
                 logger.info('delete old file:{}', f_name)
                 os.remove(os.path.join(backup_path, f_name))
-        logger.info('end backup db data')
+        logger.info('end timer db data')
     except Exception as e:
         logger.exception(e)
 
@@ -72,7 +72,7 @@ def backup_app():
     备份应用数据
     只保留最近30天的数据
     """
-    print(f'{datetime.now()} backup app data')
+    print(f'{datetime.now()} timer app data')
 
 
 def del_log():
