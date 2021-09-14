@@ -1,3 +1,7 @@
+"""
+定时脚本， 执行数据备份和清理
+nohup python3 timer_data.py >/dev/null 2>&1 &
+"""
 from apscheduler.schedulers.blocking import BlockingScheduler
 from datetime import datetime, timedelta
 import subprocess
@@ -8,9 +12,6 @@ import shutil
 
 logger.add('timer.log', level='INFO', format='{time:YYYY-MM-DD HH:mm:ss}-{file}-{line}-{message}', rotation="30 MB")
 
-"""
-定时脚本
-"""
 
 def backup_db():
     """
@@ -20,7 +21,7 @@ def backup_db():
     # 备份数据目录
     try:
         # 数据保存目录
-        backup_path = '/yunwei/timer/db'
+        backup_path = '/yunwei/backup/db'
 
         logger.info('start timer db data')
         dt_formatter = '%Y%m%d'
