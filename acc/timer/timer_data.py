@@ -10,7 +10,7 @@ import os
 import zipfile
 import shutil
 
-logger.add('timer.log', level='INFO', format='{time:YYYY-MM-DD HH:mm:ss}-{file}-{line}-{message}', rotation="30 MB")
+logger.add('timer.log', level='INFO', format='[{time:YYYY-MM-DD HH:mm:ss}-{file}-{line}] {message}', rotation="30 MB")
 
 
 def backup_db():
@@ -98,9 +98,11 @@ def del_log():
 
 
 if __name__ == '__main__':
+    logger.info('start script')
     schedule = BlockingScheduler()
     # 每天03:00执行
     schedule.add_job(del_log, 'cron', hour='3', minute='0')
     # 每天03:30执行
     schedule.add_job(backup_db, 'cron', hour='3', minute='30')
     schedule.start()
+    logger.info('end script')

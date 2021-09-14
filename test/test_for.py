@@ -4,19 +4,30 @@ from loguru import logger
 import os
 import zipfile
 import shutil
+import pymysql
+
+logger.add('timer.log', level='INFO', format='[{time:YYYY-MM-DD HH:mm:ss}-{file}-{line}] {message}', rotation="30 MB")
+
+
+def clear_request_log():
+    db_host = '10.171.7.45'
+    db_port = 23306
+    db_user = 'root'
+    db_pwd = '12358'
+    conn = pymysql.connect(host=db_host, port=db_port, user=db_user, passwd=db_pwd, database='test', charset='utf8')
+    cursor = conn.cursor()
+    try:
+        dt1 = datetime(2021, 9, 10)
+        dt2 = datetime(2021, 9, 15)
+        rows = cursor.execute("select count(*) from person where gmt_create >= %s and %s" % (dt1, dt2))
+        # conn.commit()
+        print(cursor.fetchone())
+    except Exception as e:
+        logger.error(e)
+    finally:
+        cursor.close()
+        conn.close()
 
 if __name__ == '__main__':
+    clear_request_log()
 
-    logger.info('start del log timer')
-    log_path = r'D:\tmp\332'
-    dt_formatter = '%Y-%m-%d'
-    now = datetime.now()
-    dt_before = now + timedelta(days=-3)
-    for f_name in os.listdir(log_path):
-        if f_name.endswith('.gz'):
-            dt_str = f_name.split('.')[0].replace('acc-', '')
-            dt = datetime.strptime(dt_str, dt_formatter)
-            if dt < dt_before:
-                logger.info("del log file:{}", f_name)
-                os.remove(os.path.join(log_path, f_name))
-    logger.info('end del log timer')
