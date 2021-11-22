@@ -1,12 +1,17 @@
 """
-压力测试
-locust -f locust_stress.py
+locust压力测试
+使用步骤：
+1. 本地安装locust: pip install locust
+2. 启动网页端: locust -f locust_stress.py
 """
 
 import time
 from locust import HttpUser, task, between
 from datetime import datetime, timedelta
 import random
+
+# 登陆接口返回的token, 需要每次修改
+token = ""
 
 class QuickStartUser(HttpUser):
     wait_time = between(1, 1.5)
@@ -39,7 +44,7 @@ class QuickStartUser(HttpUser):
             "timeStamp": int(t.timestamp() * 1000)
         }
         res = self.client.post("/acc/app/detail/add", json=data, headers=headers)
-        print("res=" + str(res.json()['code']))
+        print("code=" + str(res.json()['code']))
 
     # def on_start(self):
     #     self.client.post("/login", json={"username":"foo", "password":"bar"})
