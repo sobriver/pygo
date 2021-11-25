@@ -112,5 +112,5 @@ def deploy():
 
 
 if __name__ == '__main__':
-    # install()
+    #install()
     deploy()
